@@ -1,19 +1,19 @@
-package com.ie.robot.model;
+package com.ie.pacman.model;
 
 /**
- * A robot model that can hold the current coordinates (0 indexed), the current
- * direction. The robot can be placed on a given coordinate using
+ * A Pacman model that can hold the current coordinates (0 indexed), the current
+ * direction. Pacman can be placed on a given coordinate using
  * {@link #place(int, int, Direction)} command. Position can be advanced using
  * {@link #move()}. The direction can be changed using {@link #turnLeft()} and
  * {@link #turnRight()}. {@link #report()} can be used to obtain the current
- * position and direction of the robot as a string.
+ * position and direction of Pacman as a string.
  * 
  * @see Direction
  */
-public class Robot {
+public class Pacman {
 
 	/**
-	 * The supported directions by the robot - NORTH, EAST, SOUTH, OR WEST.
+	 * The supported directions by Pacman - NORTH, EAST, SOUTH, OR WEST.
 	 */
 	public enum Direction {
 	NORTH, EAST, SOUTH, WEST;
@@ -55,21 +55,21 @@ public class Robot {
 	private Direction direction;
 
 	/**
-	 * create a robot that is at 0,0 facing NORTH
+	 * create a Pacman that is at 0,0 facing NORTH
 	 */
-	public Robot() {
+	public Pacman() {
 		this.x = 0;
 		this.y = 0;
 		this.direction = Direction.NORTH;
 	}
 
 	/**
-	 * Create a new Robot at X, Y facing the direction
+	 * Create a new Pacman at X, Y facing the direction
 	 * 
 	 * @param unitsX
 	 * @param unitsY
 	 */
-	public Robot(int x, int y, Direction direction) {
+	public Pacman(int x, int y, Direction direction) {
 		this.x = x;
 		this.y = y;
 		this.direction = direction;
@@ -124,7 +124,7 @@ public class Robot {
 	}
 
 	/**
-	 * Places the robot on the table at the given coordinates
+	 * Places the Pacman on the grid at the given coordinates
 	 * 
 	 * @param x
 	 * @param y
@@ -178,7 +178,7 @@ public class Robot {
 	}
 
 	/**
-	 * @return the current position and direction of the robot X,Y,Direction<br>
+	 * @return the current position and direction of Pacman X,Y,Direction<br>
 	 *         Example: "0,0,NORTH" or "2,3,EAST"
 	 */
 	public String report() {

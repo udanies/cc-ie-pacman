@@ -1,12 +1,12 @@
-Toy Robot Simulator
+Pacman Simulator
 ===================
 
-The application is a simulation of a toy robot moving on a square tabletop,
+The application is a simulation of a Pacman moving on a grid,
 of dimensions 5 units x 5 units.
 
-There are no other obstructions on the table surface.
-The robot is free to roam around the surface, but any movement 
-that would result in the robot falling from the table will be prevented, 
+There are no other obstructions on the grid.
+Pacman is free to roam around the surface, but any movement 
+that would result in Pacman falling from the grid will be prevented, 
 however further valid movement commands will still be allowed.
 
 
@@ -18,20 +18,20 @@ Getting Started
     Apache Maven 3.5.4
 
 ### Building
-    In a command prompt, navigate to the toy-robot folder.
+    In a command prompt, navigate to the cc-ie-pacman folder.
     Run the following command to build the executable .jar file.
         mvn clean install
 
 ### Running the Simulation
     In a command prompt, run the jar file to check if the build was successful.
-        java -jar target/toy-robot-1.0.0.jar
+        java -jar target/ie-pacman-1.0.0.jar
     The welcome message will be displayed, enter some commands or 'quit' to exit.
     See below for valid commands and examples.
 
 
-Commands to the Robot
+Commands to Pacman
 ---------------------
- - PLACE X,Y,F - places the robot at the given X,Y coordinates facing NORTH,
+ - PLACE X,Y,F - places Pacman at the given X,Y coordinates facing NORTH,
                  EAST, SOUTH, or WEST. 
                  E.g.: PLACE 2,3,EAST
  - MOVE        - moves one position in the current direction
@@ -41,9 +41,9 @@ Commands to the Robot
  - QUIT        - to exit the simulation
 
 **Notes**:
- * Coordinates 0,0 is the SOUTH WEST corner of the table.
- * All commands before correctly placing a robot are ignored.
- * All malformed commands are ignored and does not affect the current position of the robot.
+ * Coordinates 0,0 is the SOUTH WEST corner of the grid.
+ * All commands before correctly placing Pacman are ignored.
+ * All malformed commands are ignored and does not affect the current position of Pacman.
  * Commands are not case sensitive.
 
 

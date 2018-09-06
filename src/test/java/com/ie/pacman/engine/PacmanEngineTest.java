@@ -1,4 +1,4 @@
-package com.ie.robot.engine;
+package com.ie.pacman.engine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -6,12 +6,12 @@ import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.ie.robot.engine.RobotEngine;
-import com.ie.robot.model.Robot;
+import com.ie.pacman.engine.PacmanEngine;
+import com.ie.pacman.model.Pacman;
 
-class RobotEngineTest {
+class PacmanEngineTest {
 
-	RobotEngine engine = RobotEngine.getInstance();
+	PacmanEngine engine = PacmanEngine.getInstance();
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -110,7 +110,7 @@ class RobotEngineTest {
 
 	@Test
 	void testMove_North() {
-		engine.place(2, 2, Robot.Direction.NORTH);
+		engine.place(2, 2, Pacman.Direction.NORTH);
 		Assert.assertEquals(true, engine.move());
 		// only Y should change
 		Assert.assertEquals("2,3,NORTH", engine.report());
@@ -125,7 +125,7 @@ class RobotEngineTest {
 
 	@Test
 	void testMove_East() {
-		engine.place(2, 2, Robot.Direction.EAST);
+		engine.place(2, 2, Pacman.Direction.EAST);
 		Assert.assertEquals(true, engine.move());
 		// only X should change
 		Assert.assertEquals("3,2,EAST", engine.report());
@@ -140,7 +140,7 @@ class RobotEngineTest {
 
 	@Test
 	void testMove_South() {
-		engine.place(2, 2, Robot.Direction.SOUTH);
+		engine.place(2, 2, Pacman.Direction.SOUTH);
 		Assert.assertEquals(true, engine.move());
 		// only Y should change
 		Assert.assertEquals("2,1,SOUTH", engine.report());
@@ -156,7 +156,7 @@ class RobotEngineTest {
 
 	@Test
 	void testMove_West() {
-		engine.place(2, 2, Robot.Direction.WEST);
+		engine.place(2, 2, Pacman.Direction.WEST);
 		Assert.assertEquals(true, engine.move());
 		// only X should change
 		Assert.assertEquals("1,2,WEST", engine.report());
@@ -172,12 +172,12 @@ class RobotEngineTest {
 	@Test
 	void testPlace() {
 		// placing wrongly fails
-		Assert.assertEquals("Placing X, Y too big must fail.", false, engine.place(9, 9, Robot.Direction.NORTH));
-		Assert.assertEquals("Placing Y too big must fail.", false, engine.place(0, 9, Robot.Direction.NORTH));
-		Assert.assertEquals("Placing X too big must fail.", false, engine.place(9, 0, Robot.Direction.NORTH));
-		Assert.assertEquals("Placing X, Y too small must fail.", false, engine.place(-1, -1, Robot.Direction.NORTH));
-		Assert.assertEquals("Placing X too small must fail.", false, engine.place(-1, 2, Robot.Direction.NORTH));
-		Assert.assertEquals("Placing Y too small must fail.", false, engine.place(2, -1, Robot.Direction.NORTH));
+		Assert.assertEquals("Placing X, Y too big must fail.", false, engine.place(9, 9, Pacman.Direction.NORTH));
+		Assert.assertEquals("Placing Y too big must fail.", false, engine.place(0, 9, Pacman.Direction.NORTH));
+		Assert.assertEquals("Placing X too big must fail.", false, engine.place(9, 0, Pacman.Direction.NORTH));
+		Assert.assertEquals("Placing X, Y too small must fail.", false, engine.place(-1, -1, Pacman.Direction.NORTH));
+		Assert.assertEquals("Placing X too small must fail.", false, engine.place(-1, 2, Pacman.Direction.NORTH));
+		Assert.assertEquals("Placing Y too small must fail.", false, engine.place(2, -1, Pacman.Direction.NORTH));
 		Assert.assertEquals("Placing unknown direction must fail.", false, engine.place(2, 2, "blah"));
 
 		// placing with known directions must be OK
@@ -188,7 +188,7 @@ class RobotEngineTest {
 
 		// placing with valid coordinates must be OK
 		Assert.assertEquals("Placing with valid coordinates must be OK.", true,
-				engine.place(2, 2, Robot.Direction.EAST));
+				engine.place(2, 2, Pacman.Direction.EAST));
 	}
 
 	@Test
@@ -196,7 +196,7 @@ class RobotEngineTest {
 		// move without placing fails
 		Assert.assertEquals("Move without placing must fail.", false, engine.move());
 		// place in a good position
-		engine.place(2, 2, Robot.Direction.NORTH);
+		engine.place(2, 2, Pacman.Direction.NORTH);
 		// move must be OK
 		Assert.assertEquals("Move after placing must be OK.", true, engine.move());
 		Assert.assertEquals("2,3,NORTH", engine.report());

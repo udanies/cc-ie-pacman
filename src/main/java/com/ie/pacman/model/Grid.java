@@ -1,26 +1,26 @@
-package com.ie.robot.model;
+package com.ie.pacman.model;
 
 /**
- * A table model than can hold its X and Y dimensions.
+ * A grid model than can hold its X and Y dimensions.
  * 
  * @see #isValidX(int)
  * @see #isValidY(int)
  * @see #isValidXY(int, int)
  *
  */
-public class Table {
+public class Grid {
 
-	// Boundaries of the table
+	// Boundaries of the grid
 	private int unitsX;
 	private int unitsY;
 
 	/**
-	 * Create a new Table with X and Y number of units to move between
+	 * Create a new Grid with X and Y number of units to move between
 	 * 
 	 * @param unitsX
 	 * @param unitsY
 	 */
-	public Table(int unitsX, int unitsY) {
+	public Grid(int unitsX, int unitsY) {
 		this.unitsX = unitsX;
 		this.unitsY = unitsY;
 	}

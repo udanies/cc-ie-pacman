@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ie</groupId>
-  <artifactId>toy-robot</artifactId>
+  <artifactId>ie-pacman</artifactId>
   <version>1.0.0</version>
-  <name>toy-robot</name>
+  <name>ie-pacman</name>
   <packaging>jar</packaging>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
@@ -24,7 +24,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>com.ie.robot.ToyRobot</mainClass>
+              <mainClass>com.ie.pacman.PacmanApp</mainClass>
             </manifest>
           </archive>
         </configuration>

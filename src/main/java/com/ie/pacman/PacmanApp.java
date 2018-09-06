@@ -1,16 +1,16 @@
-package com.ie.robot;
+package com.ie.pacman;
 
-import com.ie.robot.engine.RobotEngine;
+import com.ie.pacman.engine.PacmanEngine;
 
-public class ToyRobot {
+public class PacmanApp {
 
 	/**
-	 * Runs the robot simulation
+	 * Runs the Pacman simulation
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		RobotEngine.getInstance().run();
+		PacmanEngine.getInstance().run();
 		System.exit(0);
 	}
 

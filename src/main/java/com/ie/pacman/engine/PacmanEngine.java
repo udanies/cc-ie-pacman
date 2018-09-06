@@ -1,19 +1,19 @@
-package com.ie.robot.engine;
+package com.ie.pacman.engine;
 
 import java.io.Console;
 import java.io.IOError;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.ie.robot.model.Robot;
-import com.ie.robot.model.Table;
-import com.ie.robot.model.Robot.Direction;
+import com.ie.pacman.model.Pacman;
+import com.ie.pacman.model.Grid;
+import com.ie.pacman.model.Pacman.Direction;
 
 /**
- * The robot engine that simulates a robot moving on a table. <br>
- * Supported commands within the dimensions of the 5x5 table:
+ * The Pacman engine that simulates Pacman moving on a grid. <br>
+ * Supported commands within the dimensions of the 5x5 grid:
  * <ul>
- * <li>PLACE X,Y,F - places the robot at the given X,Y coordinates facing NORTH,
+ * <li>PLACE X,Y,F - places Pacman at the given X,Y coordinates facing NORTH,
  * EAST, SOUTH, or WEST.<br>
  * E.g.: PLACE 2,3,EAST
  * <li>MOVE - moves one position in the current direction
@@ -24,22 +24,22 @@ import com.ie.robot.model.Robot.Direction;
  * </ul>
  * Notes:
  * <ul>
- * <li>Coordinates 0,0 is the SOUTH WEST corner of the table.
- * <li>All commands before correctly placing a robot are ignored.
+ * <li>Coordinates 0,0 is the SOUTH WEST corner of the grid.
+ * <li>All commands before correctly placing Pacman are ignored.
  * <li>All malformed commands are ignored and does not affect the current
- * position of the robot.
+ * position of Pacman.
  * <li>Commands are not case sensitive.
  * </ul>
  * 
  * @see #getInstance() to get the engine instance
  * @see #run() to start the simulation
- * @see #reset() to reset the table
+ * @see #reset() to reset the grid
  */
-public class RobotEngine {
+public class PacmanEngine {
 
 	private static final String CONSOLE_MSG_EXIT = "Simulation ended. Goodbye!\r\n";
 	private static final String CONSOLE_MSG_INSTRUCTION = "Please enter your commands or 'quit' to end the simulation.\r\n";
-	private static final String CONSOLE_MSG_WELCOME = "Welcome to the Toy Robot simulation!\r\n";
+	private static final String CONSOLE_MSG_WELCOME = "Welcome to the Pacman simulation!\r\n";
 	private static final String CONSOLE_PROMPT = "> ";
 	private static final String CMD_QUIT = "QUIT";
 	private static final String CMD_REPORT = "REPORT";
@@ -49,25 +49,25 @@ public class RobotEngine {
 	private static final String CMD_PLACE_REGEX = "^\\s*PLACE\\s*(\\d+)\\s*,\\s*(\\d+)\\s*,\\s*(NORTH|EAST|SOUTH|WEST)\\s*$";
 	private static final Pattern CMD_PLACE_PATTERN = Pattern.compile(CMD_PLACE_REGEX, Pattern.CASE_INSENSITIVE);
 
-	private static RobotEngine theEngine;
+	private static PacmanEngine theEngine;
 
 	private static Console console = System.console();
-	private Robot theRobot;
-	private Table theTable;
+	private Pacman thePacman;
+	private Grid theGrid;
 
 	static {
-		theEngine = new RobotEngine();
+		theEngine = new PacmanEngine();
 	}
 
-	private RobotEngine() {
-		theTable = new Table(5, 5);
-		reset(); // initialise the robot
+	private PacmanEngine() {
+		theGrid = new Grid(5, 5);
+		reset(); // initialise
 	}
 
 	/**
-	 * @return the {@link RobotEngine} instance
+	 * @return the {@link PacmanEngine} instance
 	 */
-	public static RobotEngine getInstance() {
+	public static PacmanEngine getInstance() {
 		return theEngine;
 	}
 
@@ -98,10 +98,10 @@ public class RobotEngine {
 	}
 
 	/**
-	 * reset the table, with no robot placed yet
+	 * reset the grid, with no Pacman placed yet
 	 */
 	public void reset() {
-		theRobot = null;
+		thePacman = null;
 	}
 
 	/**
@@ -160,7 +160,7 @@ public class RobotEngine {
 	}
 
 	/**
-	 * Places the robot on the table at the given coordinates
+	 * Places Pacman on the grid at the given coordinates
 	 * 
 	 * @param x
 	 * @param y
@@ -179,7 +179,7 @@ public class RobotEngine {
 	}
 
 	/**
-	 * Places the robot on the table at the given coordinates
+	 * Places Pacman on the grid at the given coordinates
 	 * 
 	 * @param x
 	 * @param y
@@ -188,41 +188,41 @@ public class RobotEngine {
 	 *         false otherwise.
 	 */
 	public boolean place(int x, int y, Direction direction) {
-		if (direction == null || !theTable.isValidXY(x, y)) {
+		if (direction == null || !theGrid.isValidXY(x, y)) {
 			return false; // bad inputs
 		}
-		if (this.theRobot == null) {
-			this.theRobot = new Robot(x, y, direction);
+		if (this.thePacman == null) {
+			this.thePacman = new Pacman(x, y, direction);
 		} else {
-			this.theRobot.place(x, y, direction);
+			this.thePacman.place(x, y, direction);
 		}
 		return true;
 	}
 
 	/**
-	 * @return whether the robot is currently placed on valid coordinate
+	 * @return whether Pacman is currently placed on valid coordinate
 	 */
 	public boolean isPlaced() {
-		return this.theRobot != null;
+		return this.thePacman != null;
 	}
 
 	/**
-	 * if the robot is placed on a table, turns the direction to the left of the
+	 * if Pacman is placed on a grid, turns the direction to the left of the
 	 * current one, does nothing otherwise.
 	 */
 	public void turnLeft() {
 		if (isPlaced()) {
-			this.theRobot.turnLeft();
+			this.thePacman.turnLeft();
 		}
 	}
 
 	/**
-	 * if the robot is placed on a table, turns the direction to the left of the
+	 * if Pacman is placed on a grid, turns the direction to the left of the
 	 * current one, does nothing otherwise.
 	 */
 	public void turnRight() {
 		if (isPlaced()) {
-			this.theRobot.turnRight();
+			this.thePacman.turnRight();
 		}
 	}
 
@@ -235,7 +235,7 @@ public class RobotEngine {
 		if (!canMove()) {
 			return false;
 		}
-		this.theRobot.move();
+		this.thePacman.move();
 		return true;
 	}
 
@@ -243,27 +243,27 @@ public class RobotEngine {
 		if (!isPlaced()) {
 			return false;
 		}
-		switch (theRobot.getDirection()) {
+		switch (thePacman.getDirection()) {
 		case NORTH:
-			return theTable.isValidY(theRobot.getY() + 1);
+			return theGrid.isValidY(thePacman.getY() + 1);
 		case EAST:
-			return theTable.isValidX(theRobot.getX() + 1);
+			return theGrid.isValidX(thePacman.getX() + 1);
 		case SOUTH:
-			return theTable.isValidY(theRobot.getY() - 1);
+			return theGrid.isValidY(thePacman.getY() - 1);
 		case WEST:
-			return theTable.isValidX(theRobot.getX() - 1);
+			return theGrid.isValidX(thePacman.getX() - 1);
 		}
 		return false;
 	}
 
 	/**
-	 * @return the current position and direction of the robot X,Y,Direction<br>
-	 *         Example: "0,0,NORTH" or "2,3,EAST" or empty string "" if the robot is
+	 * @return the current position and direction of Pacman X,Y,Direction<br>
+	 *         Example: "0,0,NORTH" or "2,3,EAST" or empty string "" if Pacman is
 	 *         not yet placed.
 	 */
 	public String report() {
 		if (isPlaced()) {
-			return theRobot.report();
+			return thePacman.report();
 		}
 		return "";
 	}

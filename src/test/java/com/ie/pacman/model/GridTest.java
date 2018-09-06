@@ -1,15 +1,15 @@
-package com.ie.robot.model;
+package com.ie.pacman.model;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-import com.ie.robot.model.Table;
+import com.ie.pacman.model.Grid;
 
-class TableTest {
+class GridTest {
 
 	@Test
 	void testIsValidXY() {
-		Table t = new Table(5, 5);
+		Grid t = new Grid(5, 5);
 
 		// X
 		Assert.assertEquals(true, t.isValidX(0));

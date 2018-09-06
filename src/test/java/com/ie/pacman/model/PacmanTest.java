@@ -1,102 +1,102 @@
-package com.ie.robot.model;
+package com.ie.pacman.model;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.ie.robot.model.Robot;
+import com.ie.pacman.model.Pacman;
 
-class RobotTest {
+class PacmanTest {
 
-	private Robot robot;
+	private Pacman pacman;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		robot = new Robot();
+		pacman = new Pacman();
 	}
 
 	@Test
 	void testTurnLeft() {
-		robot.place(2, 2, Robot.Direction.NORTH);
-		robot.turnLeft();
-		Assert.assertEquals(Robot.Direction.WEST, robot.getDirection());
-		robot.turnLeft();
-		Assert.assertEquals(Robot.Direction.SOUTH, robot.getDirection());
-		robot.turnLeft();
-		Assert.assertEquals(Robot.Direction.EAST, robot.getDirection());
-		robot.turnLeft();
-		Assert.assertEquals(Robot.Direction.NORTH, robot.getDirection());
+		pacman.place(2, 2, Pacman.Direction.NORTH);
+		pacman.turnLeft();
+		Assert.assertEquals(Pacman.Direction.WEST, pacman.getDirection());
+		pacman.turnLeft();
+		Assert.assertEquals(Pacman.Direction.SOUTH, pacman.getDirection());
+		pacman.turnLeft();
+		Assert.assertEquals(Pacman.Direction.EAST, pacman.getDirection());
+		pacman.turnLeft();
+		Assert.assertEquals(Pacman.Direction.NORTH, pacman.getDirection());
 	}
 
 	@Test
 	void testTurnRight() {
-		robot.place(2, 2, Robot.Direction.NORTH);
-		robot.turnRight();
-		Assert.assertEquals(Robot.Direction.EAST, robot.getDirection());
-		robot.turnRight();
-		Assert.assertEquals(Robot.Direction.SOUTH, robot.getDirection());
-		robot.turnRight();
-		Assert.assertEquals(Robot.Direction.WEST, robot.getDirection());
-		robot.turnRight();
-		Assert.assertEquals(Robot.Direction.NORTH, robot.getDirection());
+		pacman.place(2, 2, Pacman.Direction.NORTH);
+		pacman.turnRight();
+		Assert.assertEquals(Pacman.Direction.EAST, pacman.getDirection());
+		pacman.turnRight();
+		Assert.assertEquals(Pacman.Direction.SOUTH, pacman.getDirection());
+		pacman.turnRight();
+		Assert.assertEquals(Pacman.Direction.WEST, pacman.getDirection());
+		pacman.turnRight();
+		Assert.assertEquals(Pacman.Direction.NORTH, pacman.getDirection());
 	}
 
 	@Test
 	void testMove_North() {
-		robot.place(2, 2, Robot.Direction.NORTH);
-		robot.move();
+		pacman.place(2, 2, Pacman.Direction.NORTH);
+		pacman.move();
 		// only Y should change
-		Assert.assertEquals(2, robot.getX());
-		Assert.assertEquals(3, robot.getY());
-		Assert.assertEquals(Robot.Direction.NORTH, robot.getDirection());
+		Assert.assertEquals(2, pacman.getX());
+		Assert.assertEquals(3, pacman.getY());
+		Assert.assertEquals(Pacman.Direction.NORTH, pacman.getDirection());
 	}
 
 	@Test
 	void testMove_East() {
-		robot.place(2, 2, Robot.Direction.EAST);
-		robot.move();
+		pacman.place(2, 2, Pacman.Direction.EAST);
+		pacman.move();
 		// only X should change
-		Assert.assertEquals(3, robot.getX());
-		Assert.assertEquals(2, robot.getY());
-		Assert.assertEquals(Robot.Direction.EAST, robot.getDirection());
+		Assert.assertEquals(3, pacman.getX());
+		Assert.assertEquals(2, pacman.getY());
+		Assert.assertEquals(Pacman.Direction.EAST, pacman.getDirection());
 	}
 
 	@Test
 	void testMove_South() {
-		robot.place(2, 2, Robot.Direction.SOUTH);
-		robot.move();
+		pacman.place(2, 2, Pacman.Direction.SOUTH);
+		pacman.move();
 		// only Y should change
-		Assert.assertEquals(2, robot.getX());
-		Assert.assertEquals(1, robot.getY());
-		Assert.assertEquals(Robot.Direction.SOUTH, robot.getDirection());
+		Assert.assertEquals(2, pacman.getX());
+		Assert.assertEquals(1, pacman.getY());
+		Assert.assertEquals(Pacman.Direction.SOUTH, pacman.getDirection());
 	}
 
 	@Test
 	void testMove_West() {
-		robot.place(2, 2, Robot.Direction.WEST);
-		robot.move();
+		pacman.place(2, 2, Pacman.Direction.WEST);
+		pacman.move();
 		// only X should change
-		Assert.assertEquals(1, robot.getX());
-		Assert.assertEquals(2, robot.getY());
-		Assert.assertEquals(Robot.Direction.WEST, robot.getDirection());
+		Assert.assertEquals(1, pacman.getX());
+		Assert.assertEquals(2, pacman.getY());
+		Assert.assertEquals(Pacman.Direction.WEST, pacman.getDirection());
 	}
 
 	@Test
 	void testPlace() {
 		Assert.assertEquals("Placing with valid coordinates must be OK.", true,
-				robot.place(2, 2, Robot.Direction.EAST));
+				pacman.place(2, 2, Pacman.Direction.EAST));
 		// coordinates updated
-		Assert.assertEquals(2, robot.getX());
-		Assert.assertEquals(2, robot.getY());
-		Assert.assertEquals(Robot.Direction.EAST, robot.getDirection());
+		Assert.assertEquals(2, pacman.getX());
+		Assert.assertEquals(2, pacman.getY());
+		Assert.assertEquals(Pacman.Direction.EAST, pacman.getDirection());
 
 		// placing wrongly fails
-		Assert.assertEquals("Placing null direction must fail.", false, robot.place(2, 2, null));
+		Assert.assertEquals("Placing null direction must fail.", false, pacman.place(2, 2, null));
 
 		// nothing should change
-		Assert.assertEquals(2, robot.getX());
-		Assert.assertEquals(2, robot.getY());
-		Assert.assertEquals(Robot.Direction.EAST, robot.getDirection());
+		Assert.assertEquals(2, pacman.getX());
+		Assert.assertEquals(2, pacman.getY());
+		Assert.assertEquals(Pacman.Direction.EAST, pacman.getDirection());
 	}
 
 }
